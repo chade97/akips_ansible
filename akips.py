@@ -13,13 +13,13 @@ exclude_networks = r"\b(?=\w)" + os.getenv('AKIPS_EXCLUDE_NETWORKS', '') + r"\b(
 
 inventory = {'_meta': {'hostvars': {}}}
 
-groupurl = 'https://{akips_server}/api-db?password={password};cmds=list+device+group'
+groupurl = 'http://{akips_server}/api-db?password={password};cmds=list+device+group'
 groupresponse = requests.get(groupurl.format(akips_server=akips_server,
                                         password=password),
                         proxies={'http': None, 'https': None})
 grouplines = groupresponse.text.splitlines()
 
-groupsuperurl = 'https://{akips_server}/api-db?password={password};cmds=list+device+super+group'
+groupsuperurl = 'http://{akips_server}/api-db?password={password};cmds=list+device+super+group'
 groupsuperresponse = requests.get(groupsuperurl.format(akips_server=akips_server,
                                         password=password),
                         proxies={'http': None, 'https': None})
@@ -32,7 +32,7 @@ for group in groups:
     if group == '' or re.search(exclude_group, group):
         continue
 
-    url = 'https://{akips_server}/api-db?password={password};cmds=mget+*+*+ping4+PING.icmpState+value+/up/+any+group+{group}'
+    url = 'http://{akips_server}/api-db?password={password};cmds=mget+*+*+ping4+PING.icmpState+value+/up/+any+group+{group}'
 
     response = requests.get(url.format(akips_server=akips_server,
                                        password=password,
