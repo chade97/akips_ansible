@@ -7,7 +7,7 @@ import re
 
 akips_server = os.environ['AKIPS_HOST']
 password = os.environ['AKIPS_PASS']
-username = os.environ['AKIPS_USERNAME']
+username = os.environ['AKIPS_USER']
 exclude_group = r"\b(?=\w)" + os.getenv('AKIPS_EXCLUDE_GROUPS', '') + r"\b(?!\w)"
 exclude_host = r"\b(?=\w)" + os.getenv('AKIPS_EXCLUDE_HOSTS', '') + r"\b(?!\w)"
 exclude_networks = r"\b(?=\w)" + os.getenv('AKIPS_EXCLUDE_NETWORKS', '') + r"\b(?!\w)"
